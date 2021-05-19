@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:control_button/control_button.dart';
 import 'package:autonomous_snowblower/weather.dart';
@@ -13,6 +12,7 @@ class ManualNav extends StatefulWidget {
 
 class _ManualNavState extends State<ManualNav> {
   String text = '';
+  bool auger = true;
   void updateState(String showText) {
     setState(() {
       text = showText;
@@ -61,12 +61,12 @@ class _ManualNavState extends State<ManualNav> {
                   elevation: 0,
                   externalColor: Colors.black,
                   internalColor: Colors.white,
-                  mainAction: () => updateState('Selected Center'),
+                  mainAction: () => updateState('1'),
                   sections: [
-                        () => updateState('Selected 1'),
-                        () => updateState('Selected 2'),
-                        () => updateState('Selected 3'),
-                        () => updateState('Selected 4'),
+                        () => updateState('5'),
+                        () => updateState('2'),
+                        () => updateState('4'),
+                        () => updateState('3'),
                   ],
                 ),
                 Text(
@@ -83,17 +83,45 @@ class _ManualNavState extends State<ManualNav> {
                 fontSize: 18,
                 color: Colors.black,),
             ),
-            ElevatedButton(
-                child: Text('Auto Mode',
-                  style: TextStyle(color: Colors.black),),
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrangeAccent),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(40.0,8.0,15.0,8.0),
+                  child: ElevatedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(auger? 'Start Auger': 'Stop Auger',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20),),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(auger? Colors.deepOrangeAccent : Colors.black12),
+                      ),
+                      onPressed: () => setState(() => auger = !auger),
+                  ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Autonomous()),
-                  );                }
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0,8.0,40.0,8.0),
+                  child: ElevatedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Auto Mode',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20),),
+                      ),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.deepOrangeAccent),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Autonomous()),
+                        );                }
+                  ),
+                ),
+              ],
             )
           ],
         ),

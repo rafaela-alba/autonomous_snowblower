@@ -16,13 +16,33 @@ class _AutonomousState extends State<Autonomous> {
     ),
     child: Scaffold(
       body: Center(
-        child: Text('Auto Mode',
-          style: new TextStyle(
-            fontSize: 60.0,
-            fontWeight: FontWeight.bold,),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset('images/aerial.JPG',
+                width:400,
+                fit: BoxFit.fitWidth,),
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: ElevatedButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text("Preset Desired Path",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),),
+                ),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.black87),
+                ),
+                onPressed: null,
+                ),
+            )
+            ],
+          )
         ),
-
       )
     );
   }

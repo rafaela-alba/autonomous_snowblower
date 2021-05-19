@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:autonomous_snowblower/manual_nav.dart';
+import 'package:autonomous_snowblower/bluetooth.dart';
 import 'package:flutter/rendering.dart';
 
 class LoginPage extends StatefulWidget {
@@ -56,6 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                       filled: true,
                       fillColor: Colors.white,
                       hintText: 'Enter password'),
+                  obscureText: true,
                 ),
               ),
               ElevatedButton(
@@ -66,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => ManualNav()),
+                    MaterialPageRoute(builder: (context) => Bluetooth()),
                   );
                 },
               ),
